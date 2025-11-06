@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matemáticas - Grado 3 </title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #fff5a5, #ffef8b, #fff);
+      font-family: 'Comic Sans MS', sans-serif;
+    }
+
+    header {
+      background-color: #FFD600;
+      color: #333;
+      padding: 15px;
+      text-align: center;
+      border-bottom: 4px solid #FFC107;
+    }
+
+    h1 {
+      color: #444;
+    }
+
+    main {
+      text-align: center;
+      padding: 20px;
+    }
+
+    video {
+      width: 80%;
+      max-width: 700px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      margin-bottom: 25px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 12px;
+      padding: 20px;
+      max-width: 600px;
+      margin: 0 auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    label {
+      font-weight: bold;
+      color: #333;
+    }
+
+    input {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: 80%;
+      font-size: 1em;
+      text-align: center;
+    }
+
+    .correcto {
+      border: 2px solid green;
+      background-color: #e6ffe6;
+    }
+
+    .incorrecto {
+      border: 2px solid red;
+      background-color: #ffe6e6;
+    }
+
+    .barra-progreso {
+      margin: 20px auto;
+      width: 80%;
+      height: 20px;
+      background-color: #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progreso {
+      height: 100%;
+      width: 0;
+      background-color: #4CAF50;
+      transition: width 0.3s;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      background: #FFC107;
+      padding: 10px 15px;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    nav a:hover {
+      background: #ffca28;
+    }
+
+    footer {
+      background-color: #FFD600;
+      color: #333;
+      padding: 10px;
+      text-align: center;
+      border-top: 4px solid #FFC107;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>📗 Matemáticas - Multiplicación Básica y division basica </h1>
+    <nav>
+      <a href="matematicas.html"> Volver a Matemáticas</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>🎓 Grado 3°</h2>
+    <h3>Video explicativo</h3>
+
+    <!-- 🎬 Video local -->
+    <video controls>
+      <source src="grado 3.mp4" type="video/mp4">
+      Tu navegador no soporta el formato de video.
+    </video>
+
+    <h3>🧮 Ejercicios (verde = correcto, rojo = incorrecto)</h3>
+
+    <form id="form-ejercicios"> 
+      <label>¿Cuánto es 57/3 ?</label>
+      <input type="text" class="ejercicio" data-respuesta="19">
+
+      <label>¿Cuánto es 32/8 ?</label>
+      <input type="text" class="ejercicio" data-respuesta="4">
+
+      <label>¿Cuánto es 5 × 4?</label>
+      <input type="text" class="ejercicio" data-respuesta="20">
+
+      <label>¿Cuánto es 7 × 9?</label>
+      <input type="text" class="ejercicio" data-respuesta="63">
+
+      <label>¿Cuánto es 848/4?</label>
+      <input type="text" class="ejercicio" data-respuesta="212">
+    </form>
+
+    <div class="barra-progreso">
+      <div class="progreso"></div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Página de Estudios</p>
+  </footer>
+
+  <script>
+    const ejercicios = document.querySelectorAll(".ejercicio");
+    const barra = document.querySelector(".progreso");
+
+    ejercicios.forEach(input => {
+      input.addEventListener("input", () => {
+        const respuesta = input.dataset.respuesta.trim();
+        const valor = input.value.trim();
+
+        if (valor === "") {
+          input.classList.remove("correcto", "incorrecto");
+        } else if (valor === respuesta) {
+          input.classList.add("correcto");
+          input.classList.remove("incorrecto");
+        } else {
+          input.classList.add("incorrecto");
+          input.classList.remove("correcto");
+        }
+
+        actualizarProgreso();
+      });
+    });
+
+    function actualizarProgreso() {
+      const total = ejercicios.length;
+      const correctos = document.querySelectorAll(".correcto").length;
+      const porcentaje = (correctos / total) * 100;
+      barra.style.width = porcentaje + "%";
+    }
+  </script>
+</body>
+</html>

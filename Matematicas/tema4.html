@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matemáticas - Grado 4 </title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #fff5a5, #ffef8b, #fff);
+      font-family: 'Comic Sans MS', sans-serif;
+    }
+
+    header {
+      background-color: #FFD600;
+      color: #333;
+      padding: 15px;
+      text-align: center;
+      border-bottom: 4px solid #FFC107;
+    }
+
+    h1 {
+      color: #444;
+    }
+
+    main {
+      text-align: center;
+      padding: 20px;
+    }
+
+    video {
+      width: 80%;
+      max-width: 700px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      margin-bottom: 25px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 12px;
+      padding: 20px;
+      max-width: 600px;
+      margin: 0 auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    label {
+      font-weight: bold;
+      color: #333;
+    }
+
+    select {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: 80%;
+      font-size: 1em;
+      text-align: center;
+    }
+
+    .correcto {
+      border: 2px solid green;
+      background-color: #e6ffe6;
+    }
+
+    .incorrecto {
+      border: 2px solid red;
+      background-color: #ffe6e6;
+    }
+
+    .barra-progreso {
+      margin: 20px auto;
+      width: 80%;
+      height: 20px;
+      background-color: #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progreso {
+      height: 100%;
+      width: 0;
+      background-color: #4CAF50;
+      transition: width 0.3s;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      background: #FFC107;
+      padding: 10px 15px;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    nav a:hover {
+      background: #ffca28;
+    }
+
+    footer {
+      background-color: #FFD600;
+      color: #333;
+      padding: 10px;
+      text-align: center;
+      border-top: 4px solid #FFC107;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>📗 Matemáticas - Fracciones y Medidas</h1>
+    <nav>
+      <a href="matematicas.html">⬅ Volver a Matemáticas</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>🎓 Grado 4° - Tipos de Fracciones</h2>
+    <h3>Video explicativo</h3>
+
+    <video controls>
+      <source src="grado 4 .mp4" type="video/mp4">
+      Tu navegador no soporta el formato de video.
+    </video>
+
+    <h3>🧮 Ejercicios (verde = correcto, rojo = incorrecto)</h3>
+
+    <form id="form-ejercicios"> 
+      <label> ¿Qué tipo de fracción es 3/4?</label>
+      <select class="ejercicio" data-respuesta="propia">
+        <option value="">Selecciona una opción</option>
+        <option value="propia">Propia</option>
+        <option value="impropia">Impropia</option>
+        <option value="mixta">Mixta</option>
+      </select>
+
+      <label> ¿Qué tipo de fracción es 7/3?</label>
+      <select class="ejercicio" data-respuesta="impropia">
+        <option value="">Selecciona una opción</option>
+        <option value="propia">Propia</option>
+        <option value="impropia">Impropia</option>
+        <option value="mixta">Mixta</option>
+      </select>
+
+      <label> ¿Qué tipo de fracción es 1 ½?</label>
+      <select class="ejercicio" data-respuesta="mixta">
+        <option value="">Selecciona una opción</option>
+        <option value="propia">Propia</option>
+        <option value="impropia">Impropia</option>
+        <option value="mixta">Mixta</option>
+      </select>
+
+      <label> ¿Qué tipo de fracción es 2/5?</label>
+      <select class="ejercicio" data-respuesta="propia">
+        <option value="">Selecciona una opción</option>
+        <option value="propia">Propia</option>
+        <option value="impropia">Impropia</option>
+        <option value="mixta">Mixta</option>
+      </select>
+
+      <label> ¿Qué tipo de fracción es 9/4?</label>
+      <select class="ejercicio" data-respuesta="impropia">
+        <option value="">Selecciona una opción</option>
+        <option value="propia">Propia</option>
+        <option value="impropia">Impropia</option>
+        <option value="mixta">Mixta</option>
+      </select>
+    </form>
+
+    <div class="barra-progreso">
+      <div class="progreso"></div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Página de Estudios</p>
+  </footer>
+
+  <script>
+    const ejercicios = document.querySelectorAll(".ejercicio");
+    const barra = document.querySelector(".progreso");
+
+    ejercicios.forEach(select => {
+      select.addEventListener("change", () => {
+        const respuesta = select.dataset.respuesta.trim();
+        const valor = select.value.trim();
+
+        if (valor === "") {
+          select.classList.remove("correcto", "incorrecto");
+        } else if (valor === respuesta) {
+          select.classList.add("correcto");
+          select.classList.remove("incorrecto");
+        } else {
+          select.classList.add("incorrecto");
+          select.classList.remove("correcto");
+        }
+
+        actualizarProgreso();
+      });
+    });
+
+    function actualizarProgreso() {
+      const total = ejercicios.length;
+      const correctos = document.querySelectorAll(".correcto").length;
+      const porcentaje = (correctos / total) * 100;
+      barra.style.width = porcentaje + "%";
+    }
+  </script>
+</body>
+</html>
