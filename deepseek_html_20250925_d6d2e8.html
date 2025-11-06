@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matemáticas - Tema 1</title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    /* Estilos de validación */
+    .correcto {
+      border: 2px solid green;
+      background-color: #e6ffe6;
+    }
+    .incorrecto {
+      border: 2px solid red;
+      background-color: #ffe6e6;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Matemáticas - Sumas y Restas (Grado 1)</h1>
+    <nav>
+      <a href="matematicas.html">Volver a Matemáticas</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Video explicativo</h2>
+    <iframe src="https://www.youtube.com/embed/Lqf5WmulMYI" allowfullscreen></iframe>
+
+    <h2>Ejercicios</h2>
+    <form id="form-ejercicios">
+      <label>1. 3 + 2 =</label>
+      <input type="text" class="ejercicio" data-respuesta="5">
+
+      <label>2. 7 – 4 =</label>
+      <input type="text" class="ejercicio" data-respuesta="3">
+
+      <label>3. María tiene 5 dulces y su hermano le da 3 más. ¿Cuántos tiene en total?</label>
+      <input type="text" class="ejercicio" data-respuesta="8">
+
+      <label>4. 10 – 6 =</label>
+      <input type="text" class="ejercicio" data-respuesta="4">
+
+      <label>5. En una jaula hay 4 pájaros. Llegan 2 más. ¿Cuántos pájaros hay ahora?</label>
+      <input type="text" class="ejercicio" data-respuesta="6">
+    </form>
+
+    <div class="barra-progreso" data-materia="matematicas">
+      <div class="progreso"></div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Página de Estudios</p>
+  </footer>
+
+  <script>
+    const ejercicios = document.querySelectorAll(".ejercicio");
+    const barra = document.querySelector(".progreso");
+
+    ejercicios.forEach(input => {
+      input.addEventListener("input", () => {
+        const respuesta = input.dataset.respuesta.trim();
+        const valor = input.value.trim();
+
+        if (valor === "") {
+          input.classList.remove("correcto", "incorrecto");
+        } else if (valor === respuesta) {
+          input.classList.add("correcto");
+          input.classList.remove("incorrecto");
+        } else {
+          input.classList.add("incorrecto");
+          input.classList.remove("correcto");
+        }
+
+        actualizarProgreso();
+      });
+    });
+
+    function actualizarProgreso() {
+      const total = ejercicios.length;
+      const correctos = document.querySelectorAll(".correcto").length;
+      const porcentaje = (correctos / total) * 100;
+      barra.style.width = porcentaje + "%";
+    }
+  </script>
+</body>
+</html>

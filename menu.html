@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menú Principal</title>
+  <link rel="stylesheet" href="menu.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+</head>
+<body>
+  <header>
+    <h1> Menú Principal</h1>
+    <button id="cerrarSesion">Cerrar sesión</button>
+    
+
+  </header>
+ 
+  <main>
+    <h2>Elige tu materia favorita 📚</h2>
+    <div class="materias">
+      <a class="materia matematicas" href="Matematicas/matematicas.html">📘 Matemáticas
+        <div class="info">
+      Aprende números, álgebra y geometría de manera divertida. Aprende de manera didactica completando los ejercicios propuestos y sobre todo no olvides mirar los videos tutoriales
+    </div>
+      </a>
+      <a class=" materia lectura " href="Lectura/lectura.html">🧠 Lectura Critica
+        <div class="info">
+      Mejora tu comprensión lectora y análisis crítico.
+     </div>
+      </a>
+      <a class="materia historia" href="Historia/historia.html">🌍 Historia
+        <div class="info">
+      Descubre los hechos que cambiaron al mundo. Aprende mas sobre la vida en la tierra y sobre todo diviertete
+    </div>
+      </a>
+      <a class="materia naturales" href="naturales/naturales.html">🧬 Naturales
+        <div class="info">
+      Explora la vida, la naturaleza y los seres vivos.
+    </div>
+      </a>
+      <a class="materia ingles" href="Ingles/ingles.html"> Inglés
+        <div class="info">
+      Mejora tu vocabulario y comunicación global.
+    </div>
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    <p>🌟 ¡Aprender es divertido! 🌟</p>
+  </footer>
+
+  <script>
+    // Botón de cerrar sesión
+    document.getElementById("cerrarSesion").addEventListener("click", () => {
+      localStorage.removeItem("usuarioActivo");
+      window.location.href = "index.html"; // Redirige al login/registro
+    });
+  </script>
+</body>
+</html>

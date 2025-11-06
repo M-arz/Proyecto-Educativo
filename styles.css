@@ -1,0 +1,269 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Baloo 2', cursive;
+  line-height: 1.6;
+  background: linear-gradient(135deg, #fdf516 0%, #ebedee 100%);
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+header {
+  background: #ffcc00;
+  color: #2c3e50;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+}
+
+header h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+header nav {
+  display: flex;
+  gap: 15px;
+}
+
+header nav a {
+  background: #ff5733;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 8px 12px;
+  border-radius: 12px;
+  transition: transform 0.2s, background 0.3s;
+}
+
+header nav a:hover {
+  background: #c70039;
+  transform: scale(1.1);
+}
+
+#usuarioInfo {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #009432;
+}
+
+/* Main */
+main {
+  flex: 1;
+  padding: 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+/* Formularios */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #fff3cd;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+}
+
+label {
+  font-weight: bold;
+  margin-top: 5px;
+  color: #444;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #ffcc00;
+  border-radius: 10px;
+  margin-top: 5px;
+  transition: 0.3s;
+  font-size: 1rem;
+}
+
+input:focus {
+  border-color: #ff5733;
+  outline: none;
+  background-color: #fff9e6;
+}
+
+/* Botones */
+button {
+  background: #28a745;
+  color: #fff;
+  padding: 12px;
+  border: none;
+  cursor: pointer;
+  border-radius: 20px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: transform 0.2s, background 0.3s;
+}
+
+button:hover {
+  background: #218838;
+  transform: scale(1.05);
+}
+
+/* Lista de materias */
+.lista-temas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.tema-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ff6f61;
+  color: white;
+  padding: 20px;
+  border-radius: 15px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: transform 0.3s, background 0.3s;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+}
+
+.tema-card:hover {
+  background: #ff3d2e;
+  transform: rotate(-2deg) scale(1.05);
+}
+
+/* Footer */
+footer {
+  background: #ffcc00;
+  color: #2c3e50;
+  text-align: center;
+  padding: 15px;
+  margin-top: auto;
+  font-weight: bold;
+}
+
+/* Botones de header */
+header .acciones {
+  display: flex;
+  gap: 10px;
+}
+
+header .acciones .btn {
+  padding: 8px 15px;
+  font-size: 0.9rem;
+}
+.auth-buttons {
+  position: absolute;     /* lo sacamos del flujo normal */
+  top: 20px;              /* distancia desde arriba */
+  right: 20px;            /* distancia desde la derecha */
+  display: flex;
+  gap: 10px;
+}
+
+.auth-buttons button {
+  border: none;
+  color: white;
+  font-family: 'Baloo 2', cursive;
+  font-size: 1rem;
+  padding: 8px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.auth-buttons button:hover {
+  background: #b9b9b9; /* un poco más oscuro al pasar */
+}
+
+#registro,
+#login {
+  display: none; /* 🔥 Esto hace que ambos estén ocultos al inicio */
+  background: #fff9e6;
+  color: #333;
+  border-radius: 15px;
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: 100px;   /* lo bajamos un poco para que no choque con el header */
+  right: 20px; /* esquina derecha */
+  z-index: 1000;
+}
+
+#registro.active,
+#login.active {
+  display: block; /* Se muestran solo cuando les damos la clase active */
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* ===== SECCIÓN INTRO ===== */
+.intro {
+  text-align: center;
+  max-width: 800px;
+  margin: 50px auto 30px;
+  color: #fff;
+}
+
+.intro h2 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  font-family: 'Fredoka One', cursive;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+
+.intro p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+/* ===== TARJETAS ===== */
+.caracteristicas {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.tarjeta {
+  background: rgba(255, 213, 0, 0.15);
+  backdrop-filter: blur(8px);
+  border-radius: 15px;
+  padding: 20px;
+  width: 250px;
+  text-align: center;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+  transition: transform 0.3s ease;
+}
+
+.tarjeta h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  color: #000000;
+}
+
+.tarjeta p {
+  font-size: 1rem;
+  color: #060606;
+}
+
+.tarjeta:hover {
+  transform: translateY(-8px);
+}
