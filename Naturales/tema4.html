@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Naturales - El cuerpo humano</title>
+<link rel="stylesheet" href="../styles.css">
+<style>
+.correcto{border:2px solid green;background-color:#e6ffe6}.incorrecto{border:2px solid red;background-color:#ffe6e6}
+main{text-align:center}video{width:80%;max-width:700px;border-radius:15px;box-shadow:0 0 15px rgba(0,0,0,0.2);margin-bottom:20px}
+form{display:flex;flex-direction:column;align-items:center;gap:10px;background:rgba(255,255,255,0.8);border-radius:10px;padding:20px;max-width:600px;margin:0 auto}
+input{padding:8px;border-radius:8px;border:1px solid #ccc;width:80%;font-size:1em;text-align:center}label{font-weight:bold}
+.barra-progreso{margin:20px auto;width:80%;height:20px;background-color:#ddd;border-radius:10px;overflow:hidden}.progreso{height:100%;width:0;background-color:#4CAF50;transition:width .3s}
+</style>
+</head>
+<body>
+<header><h1>🧠 Naturales - El cuerpo humano</h1><nav><a href="naturales.html">⬅ Volver a Naturales</a></nav></header>
+<main>
+<h2>🎓 Grado 4°</h2><h3>Video explicativo</h3>
+<video controls><source src="grado 4.mp4" type="video/mp4"></video>
+<p>El cuerpo humano está formado por sistemas que trabajan juntos: el sistema respiratorio, circulatorio, digestivo, nervioso y otros.</p>
+<h3>📝 Ejercicios</h3>
+<form id="form-ejercicios">
+<label>El cuerpo humano está formado por varios ________?</label><input type="text" class="ejercicio" data-respuesta="sistemas">
+<label>El sistema que lleva el oxígeno es el...</label><input type="text" class="ejercicio" data-respuesta="respiratorio">
+<label>Cual es el sistema que transporta la sangre?</label><input type="text" class="ejercicio" data-respuesta="circulatorio">
+<label>El sistema que controla el cuerpo es el ________?</label><input type="text" class="ejercicio" data-respuesta="nervioso">
+<label>El sistema que transforma los alimentos como de llama</label><input type="text" class="ejercicio" data-respuesta="digestivo">
+</form>
+<div class="barra-progreso"><div class="progreso"></div></div>
+</main>
+<footer><p>© 2025 Página de Estudios</p></footer>
+<script>
+const ejercicios=document.querySelectorAll(".ejercicio"),barra=document.querySelector(".progreso");
+ejercicios.forEach(i=>i.addEventListener("input",()=>{const r=i.dataset.respuesta.trim().toLowerCase(),v=i.value.trim().toLowerCase();v===""?i.classList.remove("correcto","incorrecto"):v===r?(i.classList.add("correcto"),i.classList.remove("incorrecto")):(i.classList.add("incorrecto"),i.classList.remove("correcto")),actualizarProgreso()}));
+function actualizarProgreso(){const t=ejercicios.length,c=document.querySelectorAll(".correcto").length;barra.style.width=c/t*100+"%";}
+</script>
+</body>
+</html>

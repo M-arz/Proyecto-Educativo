@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Naturales - El sistema solar</title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    .correcto{border:2px solid green;background-color:#e6ffe6}
+    .incorrecto{border:2px solid red;background-color:#ffe6e6}
+    main{text-align:center}
+    video{width:80%;max-width:700px;border-radius:15px;box-shadow:0 0 15px rgba(0,0,0,0.2);margin-bottom:20px}
+    form{display:flex;flex-direction:column;align-items:center;gap:10px;background:rgba(255,255,255,0.8);border-radius:10px;padding:20px;max-width:600px;margin:0 auto}
+    input{padding:8px;border-radius:8px;border:1px solid #ccc;width:80%;font-size:1em;text-align:center}
+    label{font-weight:bold}
+    .barra-progreso{margin:20px auto;width:80%;height:20px;background-color:#ddd;border-radius:10px;overflow:hidden}
+    .progreso{height:100%;width:0;background-color:#4CAF50;transition:width .3s}
+  </style>
+</head>
+<body>
+<header>
+<h1>☀ Naturales - El sistema solar</h1>
+<nav><a href="naturales.html">⬅ Volver a Naturales</a></nav>
+</header>
+<main>
+<h2>🎓 Grado 3°</h2>
+<h3>Video explicativo</h3>
+<video controls><source src="grado 3.mp4" type="video/mp4"></video>
+<p>El sistema solar está formado por el Sol y los planetas que giran a su alrededor. La Tierra es uno de ellos y en ella vivimos los seres humanos.</p>
+<h3>📝 Ejercicios</h3>
+<form id="form-ejercicios">
+<label>Que es el sol</label><input type="text" class="ejercicio" data-respuesta="estrella">
+<label>Los planetas giran alrededor de que</label><input type="text" class="ejercicio" data-respuesta="sol">
+<label>La Tierra es el segundo planeta del sistema solar?</label><input type="text" class="ejercicio" data-respuesta="no">
+<label>El planeta más grande es ________.</label><input type="text" class="ejercicio" data-respuesta="jupiter">
+<label>En la Tierra hay vida gracias al que?</label><input type="text" class="ejercicio" data-respuesta="agua">
+</form>
+<div class="barra-progreso"><div class="progreso"></div></div>
+</main>
+<footer><p>© 2025 Página de Estudios</p></footer>
+<script>
+const ejercicios=document.querySelectorAll(".ejercicio"),barra=document.querySelector(".progreso");
+ejercicios.forEach(i=>i.addEventListener("input",()=>{const r=i.dataset.respuesta.trim().toLowerCase(),v=i.value.trim().toLowerCase();v===""?i.classList.remove("correcto","incorrecto"):v===r?(i.classList.add("correcto"),i.classList.remove("incorrecto")):(i.classList.add("incorrecto"),i.classList.remove("correcto")),actualizarProgreso()}));
+function actualizarProgreso(){const t=ejercicios.length,c=document.querySelectorAll(".correcto").length;barra.style.width=c/t*100+"%";}
+</script>
+</body>
+</html>
