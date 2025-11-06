@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Historia - Las civilizaciones antiguas</title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    .correcto { border: 2px solid green; background-color: #e6ffe6; }
+    .incorrecto { border: 2px solid red; background-color: #ffe6e6; }
+    main { text-align: center; }
+    video { width: 80%; max-width: 700px; border-radius: 15px; box-shadow: 0 0 15px rgba(0,0,0,0.2); margin-bottom: 20px; }
+    form { display: flex; flex-direction: column; align-items: center; gap: 10px; background: rgba(255,255,255,0.8); border-radius: 10px; padding: 20px; max-width: 600px; margin: 0 auto; }
+    input { padding: 8px; border-radius: 8px; border: 1px solid #ccc; width: 80%; font-size: 1em; text-align: center; }
+    label { font-weight: bold; }
+    .barra-progreso { margin: 20px auto; width: 80%; height: 20px; background-color: #ddd; border-radius: 10px; overflow: hidden; }
+    .progreso { height: 100%; width: 0; background-color: #4CAF50; transition: width 0.3s; }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>🏛️ Historia - Las civilizaciones antiguas</h1>
+    <nav><a href="historia.html">⬅ Volver a Historia</a></nav>
+  </header>
+
+  <main>
+    <h2>🎓 Grado 1°</h2>
+    <h3>Video explicativo</h3>
+
+    <video controls>
+      <source src="grado 1.mp4" type="video/mp4">
+      Tu navegador no soporta el formato de video.
+    </video>
+
+    <p>Las civilizaciones antiguas como Egipto, Grecia y Roma fueron muy importantes. Nos enseñaron sobre la escritura, la arquitectura y las leyes. Sus inventos siguen siendo base de nuestra cultura actual.</p>
+
+    <h3>📝 Ejercicios (verde = correcto, rojo = incorrecto)</h3>
+    <form id="form-ejercicios">
+      <label>¿Qué civilización construyó las pirámides?</label>
+      <input type="text" class="ejercicio" data-respuesta="Egipto">
+
+      <label>¿Qué civilización creó la democracia?</label>
+      <input type="text" class="ejercicio" data-respuesta="Grecia">
+
+      <label>¿Qué civilización tuvo un gran imperio en Europa?</label>
+      <input type="text" class="ejercicio" data-respuesta="Roma">
+
+      <label>¿En qué continente estaban estas civilizaciones?</label>
+      <input type="text" class="ejercicio" data-respuesta="Europa">
+
+      <label>¿Qué invento importante nos dejaron los egipcios?</label>
+      <input type="text" class="ejercicio" data-respuesta="escritura">
+    </form>
+
+    <div class="barra-progreso"><div class="progreso"></div></div>
+  </main>
+
+  <footer><p>© 2025 Página de Estudios</p></footer>
+
+  <script>
+    const ejercicios = document.querySelectorAll(".ejercicio");
+    const barra = document.querySelector(".progreso");
+
+    ejercicios.forEach(input => {
+      input.addEventListener("input", () => {
+        const respuesta = input.dataset.respuesta.trim().toLowerCase();
+        const valor = input.value.trim().toLowerCase();
+        if (valor === "") {
+          input.classList.remove("correcto", "incorrecto");
+        } else if (valor === respuesta) {
+          input.classList.add("correcto");
+          input.classList.remove("incorrecto");
+        } else {
+          input.classList.add("incorrecto");
+          input.classList.remove("correcto");
+        }
+        actualizarProgreso();
+      });
+    });
+
+    function actualizarProgreso() {
+      const total = ejercicios.length;
+      const correctos = document.querySelectorAll(".correcto").length;
+      const porcentaje = (correctos / total) * 100;
+      barra.style.width = porcentaje + "%";
+    }
+  </script>
+</body>
+</html>
