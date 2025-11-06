@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lectura - Personajes y escenarios</title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    .correcto { border: 2px solid green; background-color: #e6ffe6; }
+    .incorrecto { border: 2px solid red; background-color: #ffe6e6; }
+    main { text-align: center; }
+    video { width: 80%; max-width: 700px; border-radius: 15px; box-shadow: 0 0 15px rgba(0,0,0,0.2); margin-bottom: 20px; }
+    form { display: flex; flex-direction: column; align-items: center; gap: 10px; background: rgba(255,255,255,0.8); border-radius: 10px; padding: 20px; max-width: 600px; margin: 0 auto; }
+    input { padding: 8px; border-radius: 8px; border: 1px solid #ccc; width: 80%; font-size: 1em; text-align: center; }
+    label { font-weight: bold; }
+    .barra-progreso { margin: 20px auto; width: 80%; height: 20px; background-color: #ddd; border-radius: 10px; overflow: hidden; }
+    .progreso { height: 100%; width: 0; background-color: #4CAF50; transition: width 0.3s; }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>📖 Lectura - Personajes y escenarios</h1>
+    <nav><a href="lectura.html">⬅ Volver a Lectura</a></nav>
+  </header>
+
+  <main>
+    <h2>🎓 Grado 3°</h2>
+    <h3>Video explicativo</h3>
+
+    <video controls>
+      <source src="grado 3.mp4" type="video/mp4">
+      Tu navegador no soporta el formato de video.
+    </video>
+
+    <h3>📝 Ejercicios (verde = correcto, rojo = incorrecto)</h3>
+    <form id="form-ejercicios">
+<label>¿Quién realiza las acciones en una historia?</label>
+      <input type="text" class="ejercicio" data-respuesta="Personaje">
+
+      <label>¿Cómo se llama el lugar donde ocurre la historia?</label>
+      <input type="text" class="ejercicio" data-respuesta="Escenario">
+
+      <label>El protagonista es el personaje...</label>
+      <input type="text" class="ejercicio" data-respuesta="Principal">
+
+      <label>Los personajes secundarios ayudan al...</label>
+      <input type="text" class="ejercicio" data-respuesta="Protagonista">
+
+      <label>¿Como se le llama al enemigo del personaje?</label>
+      <input type="text" class="ejercicio" data-respuesta="Antagonista">
+    </form>
+
+    <div class="barra-progreso"><div class="progreso"></div></div>
+  </main>
+
+  <footer><p>© 2025 Página de Estudios</p></footer>
+
+  <script>
+    const ejercicios = document.querySelectorAll(".ejercicio");
+    const barra = document.querySelector(".progreso");
+
+    ejercicios.forEach(input => {
+      input.addEventListener("input", () => {
+        const respuesta = input.dataset.respuesta.trim().toLowerCase();
+        const valor = input.value.trim().toLowerCase();
+        if (valor === "") {
+          input.classList.remove("correcto", "incorrecto");
+        } else if (valor === respuesta) {
+          input.classList.add("correcto");
+          input.classList.remove("incorrecto");
+        } else {
+          input.classList.add("incorrecto");
+          input.classList.remove("correcto");
+        }
+        actualizarProgreso();
+      });
+    });
+
+    function actualizarProgreso() {
+      const total = ejercicios.length;
+      const correctos = document.querySelectorAll(".correcto").length;
+      const porcentaje = (correctos / total) * 100;
+      barra.style.width = porcentaje + "%";
+    }
+  </script>
+</body>
+</html>
