@@ -1,6 +1,7 @@
-const CACHE_NAME = "horizonte-cache-v1";
+// 🧠 Nombre de la caché
+const CACHE_NAME = "horizonte-cache-v3";
 
-// ✅ Archivos a cachear (rutas relativas, funcionan en cualquier servidor o local)
+// 📦 Archivos principales a guardar (rutas relativas)
 const urlsToCache = [
   "./",
   "./index.html",
@@ -48,18 +49,28 @@ const urlsToCache = [
   "./lectura/tema5.html"
 ];
 
-// 📦 Instalar el Service Worker y guardar los archivos en caché
+// 🛠️ Instalar el Service Worker y guardar archivos en caché
 self.addEventListener("install", event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
-      console.log("📁 Archivos cacheados correctamente");
-      return cache.addAll(urlsToCache);
-    })
+    (async () => {
+      const cache = await caches.open(CACHE_NAME);
+      console.log("📦 Iniciando cacheo de archivos...");
+
+      // Intentar cachear todos los archivos individualmente (sin romper el proceso si alguno falla)
+      for (const url of urlsToCache) {
+        try {
+          await cache.add(url);
+          console.log(`✅ Cacheado correctamente: ${url}`);
+        } catch (error) {
+          console.warn(`⚠️ No se pudo cachear: ${url}`, error);
+        }
+      }
+    })()
   );
   self.skipWaiting();
 });
 
-// ♻️ Activar el nuevo Service Worker y eliminar versiones antiguas
+// ♻️ Activar nuevo Service Worker y limpiar versiones antiguas
 self.addEventListener("activate", event => {
   const cacheWhitelist = [CACHE_NAME];
   event.waitUntil(
@@ -81,12 +92,14 @@ self.addEventListener("activate", event => {
 self.addEventListener("fetch", event => {
   event.respondWith(
     caches.match(event.request).then(response => {
-      // Si hay caché, la devuelve; si no, la descarga
-      return response || fetch(event.request);
-    }).catch(() => {
-      // Si falla (por ejemplo, offline y no cacheado), puedes poner una página de error
-      return caches.match("./index.html");
+      // Si existe en la caché, se usa; si no, intenta descargarlo
+      return (
+        response ||
+        fetch(event.request).catch(() => {
+          // Si no hay conexión y no está en caché, carga el index
+          return caches.match("./index.html");
+        })
+      );
     })
   );
 });
-
