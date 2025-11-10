@@ -5,13 +5,13 @@ const urlsToCache = [
   "/Estudian/styles.css",
   "/Estudian/script.js",
 
-  // Naturales
-  "/Estudian/naturales/naturales.html",
-  "/Estudian/naturales/tema1.html",
-  "/Estudian/naturales/tema2.html",
-  "/Estudian/naturales/tema3.html",
-  "/Estudian/naturales/tema4.html",
-  "/Estudian/naturales/tema5.html",
+  // Biología
+  "/Estudian/biologia/biologia.html",
+  "/Estudian/biologia/tema1.html",
+  "/Estudian/biologia/tema2.html",
+  "/Estudian/biologia/tema3.html",
+  "/Estudian/biologia/tema4.html",
+  "/Estudian/biologia/tema5.html",
 
   // Historia
   "/Estudian/historia/historia.html",
@@ -53,3 +53,5 @@ self.addEventListener("fetch", event => {
     })
   );
 });
+
+
