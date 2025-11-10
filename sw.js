@@ -1,7 +1,7 @@
-// 🧠 Nombre de la caché
-const CACHE_NAME = "horizonte-cache-v3";
+// 🌐 Horizonte Educativo - Service Worker final
+const CACHE_NAME = "horizonte-cache-v4";
 
-// 📦 Archivos principales a guardar (rutas relativas)
+// 📦 Archivos principales a cachear
 const urlsToCache = [
   "./",
   "./index.html",
@@ -9,54 +9,54 @@ const urlsToCache = [
   "./script.js",
 
   // Biología
-  "./biologia/biologia.html",
-  "./biologia/tema1.html",
-  "./biologia/tema2.html",
-  "./biologia/tema3.html",
-  "./biologia/tema4.html",
-  "./biologia/tema5.html",
+  "./Biologia/biologia.html",
+  "./Biologia/tema1.html",
+  "./Biologia/tema2.html",
+  "./Biologia/tema3.html",
+  "./Biologia/tema4.html",
+  "./Biologia/tema5.html",
 
   // Historia
-  "./historia/historia.html",
-  "./historia/tema1.html",
-  "./historia/tema2.html",
-  "./historia/tema3.html",
-  "./historia/tema4.html",
-  "./historia/tema5.html",
+  "./Historia/historia.html",
+  "./Historia/tema1.html",
+  "./Historia/tema2.html",
+  "./Historia/tema3.html",
+  "./Historia/tema4.html",
+  "./Historia/tema5.html",
 
   // Inglés
-  "./ingles/ingles.html",
-  "./ingles/tema1.html",
-  "./ingles/tema2.html",
-  "./ingles/tema3.html",
-  "./ingles/tema4.html",
-  "./ingles/tema5.html",
+  "./Ingles/ingles.html",
+  "./Ingles/tema1.html",
+  "./Ingles/tema2.html",
+  "./Ingles/tema3.html",
+  "./Ingles/tema4.html",
+  "./Ingles/tema5.html",
 
   // Matemáticas
-  "./matematicas/matematicas.html",
-  "./matematicas/tema1.html",
-  "./matematicas/tema2.html",
-  "./matematicas/tema3.html",
-  "./matematicas/tema4.html",
-  "./matematicas/tema5.html",
+  "./Matematicas/matematicas.html",
+  "./Matematicas/tema1.html",
+  "./Matematicas/tema2.html",
+  "./Matematicas/tema3.html",
+  "./Matematicas/tema4.html",
+  "./Matematicas/tema5.html",
 
   // Lectura Crítica
-  "./lectura/lectura.html",
-  "./lectura/tema1.html",
-  "./lectura/tema2.html",
-  "./lectura/tema3.html",
-  "./lectura/tema4.html",
-  "./lectura/tema5.html"
+  "./Lectura/lectura.html",
+  "./Lectura/tema1.html",
+  "./Lectura/tema2.html",
+  "./Lectura/tema3.html",
+  "./Lectura/tema4.html",
+  "./Lectura/tema5.html"
 ];
 
-// 🛠️ Instalar el Service Worker y guardar archivos en caché
+// 🧩 Instalar el Service Worker y guardar los archivos
 self.addEventListener("install", event => {
   event.waitUntil(
     (async () => {
       const cache = await caches.open(CACHE_NAME);
-      console.log("📦 Iniciando cacheo de archivos...");
+      console.log("📦 Iniciando proceso de cacheo...");
 
-      // Intentar cachear todos los archivos individualmente (sin romper el proceso si alguno falla)
+      // Cachear archivo por archivo, sin romper el flujo si alguno falla
       for (const url of urlsToCache) {
         try {
           await cache.add(url);
@@ -70,7 +70,7 @@ self.addEventListener("install", event => {
   self.skipWaiting();
 });
 
-// ♻️ Activar nuevo Service Worker y limpiar versiones antiguas
+// 🔁 Activar nuevo SW y eliminar versiones viejas
 self.addEventListener("activate", event => {
   const cacheWhitelist = [CACHE_NAME];
   event.waitUntil(
@@ -88,15 +88,14 @@ self.addEventListener("activate", event => {
   self.clients.claim();
 });
 
-// ⚙️ Interceptar peticiones y responder desde caché si no hay conexión
+// ⚙️ Interceptar peticiones y responder desde caché si no hay red
 self.addEventListener("fetch", event => {
   event.respondWith(
     caches.match(event.request).then(response => {
-      // Si existe en la caché, se usa; si no, intenta descargarlo
       return (
         response ||
         fetch(event.request).catch(() => {
-          // Si no hay conexión y no está en caché, carga el index
+          // Si no hay conexión ni recurso cacheado, carga el index
           return caches.match("./index.html");
         })
       );
