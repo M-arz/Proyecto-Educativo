@@ -9,12 +9,12 @@ const urlsToCache = [
   "./script.js",
 
   // Biología
-  "./Biologia/biologia.html",
-  "./Biologia/tema1.html",
-  "./Biologia/tema2.html",
-  "./Biologia/tema3.html",
-  "./Biologia/tema4.html",
-  "./Biologia/tema5.html",
+  "./Naturales/naturales.html",
+  "./Naturales/tema1.html",
+  "./Naturales/tema2.html",
+  "./Naturales/tema3.html",
+  "./Naturales/tema4.html",
+  "./Naturales/tema5.html",
 
   // Historia
   "./Historia/historia.html",
@@ -102,3 +102,4 @@ self.addEventListener("fetch", event => {
     })
   );
 });
+
