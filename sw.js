@@ -1,45 +1,45 @@
 // 🌐 Horizonte Educativo - Service Worker funcional OFFLINE
-const CACHE_NAME = "horizonte-cache-v7";
+const CACHE_NAME = "horizonte-cache-v9";
 const urlsToCache = [
   "./",
   "./index.html",
   "./styles.css",
   "./script.js",
 
-  // Biología
-  "./Biologia/index.html",
-  "./Biologia/tema1.html",
-  "./Biologia/tema2.html",
-  "./Biologia/tema3.html",
-  "./Biologia/tema4.html",
-  "./Biologia/tema5.html",
+  // 🌱 Naturales
+  "./Naturales/naturales.html",
+  "./Naturales/tema1.html",
+  "./Naturales/tema2.html",
+  "./Naturales/tema3.html",
+  "./Naturales/tema4.html",
+  "./Naturales/tema5.html",
 
-  // Historia
-  "./Historia/index.html",
+  // 📜 Historia
+  "./Historia/historia.html",
   "./Historia/tema1.html",
   "./Historia/tema2.html",
   "./Historia/tema3.html",
   "./Historia/tema4.html",
   "./Historia/tema5.html",
 
-  // Inglés
-  "./Ingles/index.html",
+  // 🇬🇧 Inglés
+  "./Ingles/ingles.html",
   "./Ingles/tema1.html",
   "./Ingles/tema2.html",
   "./Ingles/tema3.html",
   "./Ingles/tema4.html",
   "./Ingles/tema5.html",
 
-  // Matemáticas
-  "./Matematicas/index.html",
+  // ➗ Matemáticas
+  "./Matematicas/matematicas.html",
   "./Matematicas/tema1.html",
   "./Matematicas/tema2.html",
   "./Matematicas/tema3.html",
   "./Matematicas/tema4.html",
   "./Matematicas/tema5.html",
 
-  // Lectura Crítica
-  "./Lectura/index.html",
+  // 📖 Lectura Crítica
+  "./Lectura/lectura.html",
   "./Lectura/tema1.html",
   "./Lectura/tema2.html",
   "./Lectura/tema3.html",
@@ -47,15 +47,16 @@ const urlsToCache = [
   "./Lectura/tema5.html"
 ];
 
-// 🧩 Instalar el Service Worker
+// 🧩 Instalar y cachear archivos
 self.addEventListener("install", event => {
-  console.log("📦 Instalando Service Worker y cacheando recursos...");
+  console.log("📦 Instalando Service Worker...");
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache =>
       Promise.all(
         urlsToCache.map(url =>
-          cache.add(url).then(() => console.log(`✅ Cacheado: ${url}`))
-            .catch(err => console.warn(`⚠️ Error cacheando ${url}`, err))
+          cache.add(url)
+            .then(() => console.log(`✅ Cacheado: ${url}`))
+            .catch(err => console.warn(`⚠️ No se pudo cachear: ${url}`, err))
         )
       )
     )
@@ -63,14 +64,14 @@ self.addEventListener("install", event => {
   self.skipWaiting();
 });
 
-// 🔁 Activar y limpiar cachés antiguos
+// 🔁 Activar y limpiar versiones anteriores
 self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys().then(keys =>
       Promise.all(
         keys.map(key => {
           if (key !== CACHE_NAME) {
-            console.log("🧹 Borrando caché antigua:", key);
+            console.log("🧹 Eliminando caché antigua:", key);
             return caches.delete(key);
           }
         })
@@ -80,17 +81,14 @@ self.addEventListener("activate", event => {
   self.clients.claim();
 });
 
-// ⚙️ Interceptar peticiones y responder desde caché o red
+// ⚙️ Interceptar peticiones (offline fallback)
 self.addEventListener("fetch", event => {
   event.respondWith(
     caches.match(event.request).then(response => {
-      if (response) {
-        console.log(`📂 Sirviendo desde caché: ${event.request.url}`);
-        return response;
-      }
-      console.log(`🌍 Buscando en red: ${event.request.url}`);
-      return fetch(event.request).catch(() => caches.match("./index.html"));
+      return (
+        response ||
+        fetch(event.request).catch(() => caches.match("./index.html"))
+      );
     })
   );
 });
-
