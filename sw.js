@@ -22,6 +22,11 @@ const urlsToCache = [
   "./Historia/tema3.html",
   "./Historia/tema4.html",
   "./Historia/tema5.html",
+  "./Historia/grado 1.mp4",
+  "./Historia/grado 2.mp4",
+  "./Historia/grado 3.mp4",
+  "./Historia/grado 4.mp4",
+  "./Historia/grado 5.mp4",
 
   // 🇬🇧 Inglés
   "./Ingles/ingles.html",
@@ -93,4 +98,5 @@ self.addEventListener("fetch", event => {
     })
   );
 });
+
 
