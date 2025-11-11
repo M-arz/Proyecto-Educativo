@@ -18,7 +18,7 @@ const urlsToCache = [
   "./Naturales/grado 1.mp4",
   "./Naturales/grado 2.mp4",
   "./Naturales/grado 3.mp4",
-  "./Naturales/grado 4.mp4",
+  "./Naturales/grado_4.mp4",
   "./Naturales/grado 5.mp4",
 
   // 📜 Historia
@@ -119,6 +119,7 @@ self.addEventListener("fetch", event => {
     })
   );
 });
+
 
 
 
