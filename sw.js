@@ -3,6 +3,7 @@ const CACHE_NAME = "horizonte-cache-v9";
 const urlsToCache = [
   "./",
   "./index.html",
+  "./menu.html",
   "./styles.css",
   "./script.js",
 
@@ -92,3 +93,4 @@ self.addEventListener("fetch", event => {
     })
   );
 });
+
