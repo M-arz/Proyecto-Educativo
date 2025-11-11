@@ -18,8 +18,8 @@ const urlsToCache = [
   "./Naturales/grado 1.mp4",
   "./Naturales/grado 2.mp4",
   "./Naturales/grado 3.mp4",
-  "./Naturales/grado_4.mp4",
-  "./Naturales/grado_5.mp4",
+  "./Naturales/grado 4.mp4",
+  "./Naturales/grado 5.mp4",
 
   // 📜 Historia
   "./Historia/historia.html",
@@ -57,8 +57,8 @@ const urlsToCache = [
   "./Matematicas/video grado 1.mp4",
   "./Matematicas/grado 2.mp4",
   "./Matematicas/grado 3.mp4",
-  "./Matematicas/grado 4.mp4",
-  "./Matematicas/grado 5.mp4",
+  "./Matematicas/grado_4.mp4",
+  "./Matematicas/grado_5.mp4",
 
   // 📖 Lectura Crítica
   "./Lectura/lectura.html",
@@ -119,6 +119,7 @@ self.addEventListener("fetch", event => {
     })
   );
 });
+
 
 
 
