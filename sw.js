@@ -6,6 +6,7 @@ const urlsToCache = [
   "./menu.html",
   "./styles.css",
   "./script.js",
+  "./menu.css",
 
   // 🌱 Naturales
   "./Naturales/naturales.html",
@@ -98,5 +99,6 @@ self.addEventListener("fetch", event => {
     })
   );
 });
+
 
 
