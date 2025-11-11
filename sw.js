@@ -1,5 +1,5 @@
-// 🌐 Horizonte Educativo - Service Worker final
-const CACHE_NAME = "horizonte-cache-v4";
+// 🌐 Horizonte Educativo - Service Worker final (ajustado a estructura real)
+const CACHE_NAME = "horizonte-cache-v6";
 
 // 📦 Archivos principales a cachear
 const urlsToCache = [
@@ -9,12 +9,12 @@ const urlsToCache = [
   "./script.js",
 
   // Biología
-  "./Naturales/naturales.html",
-  "./Naturales/tema1.html",
-  "./Naturales/tema2.html",
-  "./Naturales/tema3.html",
-  "./Naturales/tema4.html",
-  "./Naturales/tema5.html",
+  "./Biologia/biologia.html",
+  "./Biologia/tema1.html",
+  "./Biologia/tema2.html",
+  "./Biologia/tema3.html",
+  "./Biologia/tema4.html",
+  "./Biologia/tema5.html",
 
   // Historia
   "./Historia/historia.html",
@@ -56,7 +56,6 @@ self.addEventListener("install", event => {
       const cache = await caches.open(CACHE_NAME);
       console.log("📦 Iniciando proceso de cacheo...");
 
-      // Cachear archivo por archivo, sin romper el flujo si alguno falla
       for (const url of urlsToCache) {
         try {
           await cache.add(url);
@@ -94,12 +93,8 @@ self.addEventListener("fetch", event => {
     caches.match(event.request).then(response => {
       return (
         response ||
-        fetch(event.request).catch(() => {
-          // Si no hay conexión ni recurso cacheado, carga el index
-          return caches.match("./index.html");
-        })
+        fetch(event.request).catch(() => caches.match("./index.html"))
       );
     })
   );
 });
-
