@@ -15,10 +15,10 @@ const urlsToCache = [
   "./Naturales/tema3.html",
   "./Naturales/tema4.html",
   "./Naturales/tema5.html",
-  "./Naturales/grado 1.mp4,
-  "./Naturales/grado 2.mp4,
-  "./Naturales/grado 3.mp4,
-  "./Naturales/grado 4.mp4,
+  "./Naturales/grado 1.mp4",
+  "./Naturales/grado 2.mp4",
+  "./Naturales/grado 3.mp4",
+  "./Naturales/grado 4.mp4",
   "./Naturales/grado 5.mp4",
 
   // 📜 Historia
@@ -119,6 +119,7 @@ self.addEventListener("fetch", event => {
     })
   );
 });
+
 
 
 
