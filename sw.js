@@ -15,6 +15,11 @@ const urlsToCache = [
   "./Naturales/tema3.html",
   "./Naturales/tema4.html",
   "./Naturales/tema5.html",
+  "./Naturales/grado 1.mp4,
+  "./Naturales/grado 2.mp4,
+  "./Naturales/grado 3.mp4,
+  "./Naturales/grado 4.mp4,
+  "./Naturales/grado 5.mp4",
 
   // 📜 Historia
   "./Historia/historia.html",
@@ -36,6 +41,11 @@ const urlsToCache = [
   "./Ingles/tema3.html",
   "./Ingles/tema4.html",
   "./Ingles/tema5.html",
+  "./Ingles/grado 1.mp4",
+  "./Ingles/grado 2.mp4",
+  "./Ingles/grado 3.mp4",
+  "./Ingles/grado 4.mp4",
+  "./Ingles/grado 5.mp4",
 
   // ➗ Matemáticas
   "./Matematicas/matematicas.html",
@@ -44,6 +54,11 @@ const urlsToCache = [
   "./Matematicas/tema3.html",
   "./Matematicas/tema4.html",
   "./Matematicas/tema5.html",
+  "./Matematicas/video grado 1.mp4",
+  "./Matematicas/grado 2.mp4",
+  "./Matematicas/grado 3.mp4",
+  "./Matematicas/grado 4.mp4",
+  "./Matematicas/grado 5.mp4",
 
   // 📖 Lectura Crítica
   "./Lectura/lectura.html",
@@ -51,7 +66,12 @@ const urlsToCache = [
   "./Lectura/tema2.html",
   "./Lectura/tema3.html",
   "./Lectura/tema4.html",
-  "./Lectura/tema5.html"
+  "./Lectura/tema5.html",
+  "./Lectura/grado 1.mp4",
+  "./Lectura/grado 2.mp4",
+  "./Lectura/grado 3.mp4",
+  "./Lectura/grado 4.mp4",
+  "./Lectura/grado 5.mp4",
 ];
 
 // 🧩 Instalar y cachear archivos
@@ -99,6 +119,7 @@ self.addEventListener("fetch", event => {
     })
   );
 });
+
 
 
 
